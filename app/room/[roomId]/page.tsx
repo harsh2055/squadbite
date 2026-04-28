@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { v4 as uuidv4 } from 'uuid';
 import { getRandomAvatar, MOCK_RESTAURANTS } from '@/lib/mockData';
@@ -59,9 +59,9 @@ export default function RoomPage() {
       setShowJoin(true);
       setInitializing(false);
     }
-  }, [roomId]);
+  }, [roomId, setUser, initSocket, setRoomId]);
 
-  function initSocket(user: { id: string; name: string; avatar: string }) {
+  const initSocket = useCallback((user: { id: string; name: string; avatar: string }) => {
     const socket = socketService.connect();
     socketRef.current = socket;
 
@@ -115,7 +115,7 @@ export default function RoomPage() {
         isVeg: c.isVeg
       })));
     });
-  }
+  }, [roomId, setMessages, setCartItems, addMessage]);
 
   useEffect(() => {
     return () => {
@@ -130,7 +130,7 @@ export default function RoomPage() {
       setTimeout(() => setCartAnimating(false), 500);
     }
     setCartCount(cartItems.length);
-  }, [cartItems.length]);
+  }, [cartItems.length, cartCount, setCartAnimating]);
 
   // ── Handlers ────────────────────────────────────────────────────────────────
   async function handleJoin(name: string) {
