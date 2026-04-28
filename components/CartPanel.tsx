@@ -45,7 +45,7 @@ export default function CartPanel({ items, userId, restaurants, onRemove, onUpda
         <div>
           <p className="font-display font-bold text-white text-xl">Squad Cart is Empty</p>
           <p className="text-white/30 text-sm mt-2 max-w-[200px] mx-auto">
-            Your squad hasn't added anything yet. Ask SquadBot for some tasty ideas!
+            Your squad hasn&apos;t added anything yet. Ask SquadBot for some tasty ideas!
           </p>
         </div>
       </div>

@@ -48,7 +48,7 @@ export default function BillPanel({ items, roomUsers, userId }: Props) {
         <div>
           <p className="font-display font-bold text-white text-xl">No Squad Bill Yet</p>
           <p className="text-white/30 text-sm mt-2 max-w-[200px] mx-auto">
-            Once the squad starts adding food, we'll split the bill automatically!
+            Once the squad starts adding food, we&apos;ll split the bill automatically!
           </p>
         </div>
       </div>

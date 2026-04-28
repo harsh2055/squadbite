@@ -284,7 +284,7 @@ function FoodSuggestionCard({
       <div className="p-4 space-y-4">
         {suggestion.reason && (
           <p className="text-[11px] text-[#FC8019]/80 bg-[#FC8019]/5 px-3 py-1.5 rounded-lg border border-[#FC8019]/10 italic">
-            "{suggestion.reason}"
+            &quot;{suggestion.reason}&quot;
           </p>
         )}
 
