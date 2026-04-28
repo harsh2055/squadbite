@@ -40,7 +40,7 @@ async function getAISuggestions(message: string) {
   }
 
   try {
-    console.log(`[AI] Calling NVIDIA for Room: ${roomId}`);
+    console.log(`[AI] Calling NVIDIA integration...`);
     const response = await fetch(`${process.env.NVIDIA_API_BASE_URL}/chat/completions`, {
       method: 'POST',
       headers: {
@@ -63,7 +63,7 @@ async function getAISuggestions(message: string) {
       throw new Error(`NVIDIA API failed: ${response.status}`);
     }
 
-    const data = await response.json();
+    const data = await response.json() as any;
     const content = data.choices[0].message.content;
     const jsonStr = content.substring(content.indexOf('{'), content.lastIndexOf('}') + 1);
     const aiResponse = JSON.parse(jsonStr);
@@ -135,7 +135,7 @@ io.on('connection', (socket) => {
     socket.emit('init-data', { messages: existingMessages, cart: existingCart });
   });
 
-  socket.on('send-message', async (data) => {
+  socket.on('send-message', async (data: any) => {
     const { roomId, sender, senderId, text, type } = data;
     
     // Save to Neon
@@ -167,7 +167,7 @@ io.on('connection', (socket) => {
     }
   });
 
-  socket.on('add-to-cart', async (data) => {
+  socket.on('add-to-cart', async (data: any) => {
     try {
       const { roomId, item, user } = data;
       console.log(`[CART] User ${user.name} adding ${item.name} to room ${roomId}`);
