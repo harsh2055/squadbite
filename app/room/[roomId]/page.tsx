@@ -71,8 +71,11 @@ export default function RoomPage() {
         price: c.price,
         quantity: c.quantity,
         addedBy: c.addedBy,
+        addedByName: c.addedByName || 'Squad Member',
         image: c.image,
-        isVeg: c.isVeg
+        isVeg: c.isVeg,
+        restaurantId: c.restaurantId || '1',
+        restaurantName: c.restaurantName || 'Restaurant'
       })));
       setInitializing(false);
     });
@@ -97,9 +100,11 @@ export default function RoomPage() {
         price: c.price,
         quantity: c.quantity || 1,
         addedBy: c.userId,
-        addedByName: c.addedBy,
+        addedByName: c.addedBy || 'Squad Member',
         image: c.image,
-        isVeg: c.isVeg
+        isVeg: c.isVeg,
+        restaurantId: c.restaurantId || '1',
+        restaurantName: c.restaurantName || 'Restaurant'
       })));
     });
   }, [roomId, setMessages, setCartItems, addMessage]);
