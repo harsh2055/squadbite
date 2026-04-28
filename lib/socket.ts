@@ -6,7 +6,7 @@ class SocketService {
 
   connect() {
     if (!this.socket) {
-      const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5000';
+      const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'https://squadbite.onrender.com';
       this.socket = io(backendUrl);
     }
     return this.socket;
