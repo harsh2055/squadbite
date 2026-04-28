@@ -48,19 +48,6 @@ export default function RoomPage() {
 
   const socketRef = useRef<any>(null);
 
-  // ── Init ────────────────────────────────────────────────────────────────────
-  useEffect(() => {
-    setRoomId(roomId);
-    const sessionUser = getSessionUser();
-    if (sessionUser) {
-      setUser(sessionUser.id, sessionUser.name, sessionUser.avatar);
-      initSocket(sessionUser);
-    } else {
-      setShowJoin(true);
-      setInitializing(false);
-    }
-  }, [roomId, setUser, initSocket, setRoomId]);
-
   const initSocket = useCallback((user: { id: string; name: string; avatar: string }) => {
     const socket = socketService.connect();
     socketRef.current = socket;
@@ -116,6 +103,19 @@ export default function RoomPage() {
       })));
     });
   }, [roomId, setMessages, setCartItems, addMessage]);
+
+  // ── Init ────────────────────────────────────────────────────────────────────
+  useEffect(() => {
+    setRoomId(roomId);
+    const sessionUser = getSessionUser();
+    if (sessionUser) {
+      setUser(sessionUser.id, sessionUser.name, sessionUser.avatar);
+      initSocket(sessionUser);
+    } else {
+      setShowJoin(true);
+      setInitializing(false);
+    }
+  }, [roomId, setUser, initSocket, setRoomId]);
 
   useEffect(() => {
     return () => {
