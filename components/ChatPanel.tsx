@@ -5,6 +5,7 @@ import { Send, Sparkles, Plus, Check, ShoppingBag, Clock, Star } from 'lucide-re
 import { ChatMessage, CartItem, MenuItem, MOCK_RESTAURANTS, AISuggestion } from '@/lib/mockData';
 import { v4 as uuidv4 } from 'uuid';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 
 interface Props {
   messages: ChatMessage[];
@@ -257,7 +258,7 @@ function FoodSuggestionCard({
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl overflow-hidden bg-white/5 border border-white/10">
             {restaurant?.image.startsWith('http') ? (
-              <img src={restaurant.image} alt="" className="w-full h-full object-cover" />
+              <Image src={restaurant.image} alt={restaurant.name || 'Restaurant'} width={40} height={40} unoptimized className="w-full h-full object-cover" />
             ) : (
               <div className="w-full h-full flex items-center justify-center text-xl">{restaurant?.image || '🍽️'}</div>
             )}
@@ -294,7 +295,7 @@ function FoodSuggestionCard({
             <div key={item.id} className="flex gap-3">
               <div className="w-16 h-16 rounded-2xl overflow-hidden bg-white/5 flex-shrink-0">
                 {item.image ? (
-                  <img src={item.image} alt="" className="w-full h-full object-cover" />
+                  <Image src={item.image} alt={item.name} width={64} height={64} unoptimized className="w-full h-full object-cover" />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-2xl">{item.emoji || '🍴'}</div>
                 )}

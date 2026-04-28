@@ -3,6 +3,7 @@
 import { Minus, Plus, Trash2, ShoppingBag, ArrowRight, User, Users } from 'lucide-react';
 import { CartItem, Restaurant } from '@/lib/mockData';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 
 interface Props {
   items: CartItem[];
@@ -93,7 +94,7 @@ export default function CartPanel({ items, userId, restaurants, onRemove, onUpda
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-sm border border-white/10">
                     {restaurant?.image.startsWith('http') ? (
-                      <img src={restaurant.image} alt="" className="w-full h-full object-cover rounded-lg" />
+                      <Image src={restaurant.image} alt={restaurant.name || 'Restaurant'} width={32} height={32} unoptimized className="w-full h-full object-cover rounded-lg" />
                     ) : (
                       restaurant?.image || '🍽️'
                     )}
@@ -176,7 +177,7 @@ function CartItemRow({
     >
       <div className="w-12 h-12 rounded-xl overflow-hidden bg-white/5 flex-shrink-0">
         {item.image ? (
-          <img src={item.image} alt="" className="w-full h-full object-cover" />
+          <Image src={item.image} alt={item.name} width={48} height={48} unoptimized className="w-full h-full object-cover" />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-xl">{item.emoji || '🍴'}</div>
         )}

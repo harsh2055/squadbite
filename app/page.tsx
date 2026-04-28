@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Users, Sparkles, ShoppingCart, Receipt, ArrowRight, ChefHat, Zap, MessageSquare, Target } from 'lucide-react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 export default function Home() {
   const router = useRouter();
@@ -172,7 +173,7 @@ export default function Home() {
       <footer className="border-t border-white/5 px-8 py-10 text-center relative z-10">
         <div className="flex flex-col items-center gap-4">
           <div className="flex items-center gap-2 opacity-30 grayscale hover:grayscale-0 transition-all">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Nvidia_logo.svg" alt="Nvidia" className="h-4" />
+            <Image src="https://upload.wikimedia.org/wikipedia/commons/2/21/Nvidia_logo.svg" alt="Nvidia" width={80} height={16} unoptimized className="h-4 w-auto" />
             <span className="text-xs font-black text-white">+ SquadBite Engine</span>
           </div>
           <p className="text-white/10 text-[10px] font-black uppercase tracking-[0.5em]">
