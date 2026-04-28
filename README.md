@@ -1,191 +1,83 @@
-# 🍕 SquadBite — AI-Powered Group Food Ordering
+# 🍕 SquadBite
 
-> Order food together with your squad. AI suggestions, real-time shared cart, smart bill splitting.
+**The smartest way for squads to decide what to eat.**
 
-![SquadBite](https://img.shields.io/badge/SquadBite-v1.0.0-FC8019?style=for-the-badge)
-![Next.js](https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js)
-![Firebase](https://img.shields.io/badge/Firebase-Realtime-orange?style=for-the-badge&logo=firebase)
-![NVIDIA AI](https://img.shields.io/badge/NVIDIA-LLM%20API-76b900?style=for-the-badge)
+SquadBite is a premium, real-time web application designed to solve the age-old problem of "What should we eat?". It combines real-time group synchronization with an AI-powered food concierge to make group ordering seamless, interactive, and fun.
 
----
-
-## ✨ Features
-
-| Feature | Description |
-|---|---|
-| 🏠 **Group Rooms** | Create unique rooms, share codes, join without signup |
-| 🤖 **AI Chat (SquadBot)** | NVIDIA LLM-powered food suggestions via natural language |
-| 🛒 **Shared Cart** | Real-time cart synced across all users via Firebase |
-| 🧾 **Smart Bill Split** | Split by items ordered OR equal split with per-user totals |
-| 📱 **Mobile-First** | Fully responsive Swiggy-inspired dark UI |
-| ⚡ **Zero Login** | Temporary session, no account needed |
+🚀 **Live Demo:** [https://squadbite.vercel.app/](https://squadbite.vercel.app/)
 
 ---
 
-## 🚀 Quick Start
+## ✨ Key Features
 
-### 1. Install dependencies
+### 🤖 Smart AI Food Concierge
+Integrated with **NVIDIA Llama-3.1**, our SquadBot analyzes your group's cravings and provides intelligent, personalized restaurant and dish suggestions directly in the chat.
 
-```bash
-npm install
-```
+### 🔄 Real-time Multi-user Sync
+Powered by **Socket.io**, every action—from sending a message to adding an item to the cart—is instantly synchronized across all squad members' screens. No more "refresh to see updates."
 
-### 2. Configure environment variables
+### 🛒 Shared Squad Cart
+A unified cart for the entire room. See exactly what everyone is adding in real-time. Transparent, collaborative, and easy to manage.
 
-```bash
-cp .env.local.example .env.local
-```
+### 💬 Instant Group Chat
+Discuss your options in a beautiful, glassmorphic chat interface. Get AI suggestions or just debate whether to get extra garlic bread.
 
-Edit `.env.local` with your credentials (see Configuration section below).
+### 🧾 Smart Bill Splitting
+Automatically calculates individual totals and the grand total. Perfect for knowing exactly who owes what before the food even arrives.
 
-### 3. Run the development server
-
-```bash
-npm run dev
-```
-
-Visit → **http://localhost:3000**
+### 🎨 Premium Design Aesthetics
+- **Modern Dark UI**: A sleek, high-contrast design using deep charcoal and vibrant orange accents.
+- **Glassmorphism**: Subtle translucency and blur effects for a premium, lightweight feel.
+- **Micro-animations**: Smooth transitions and hover effects powered by **Framer Motion**.
 
 ---
 
-## ⚙️ Configuration
+## 🛠️ Technology Stack
 
-### 🔑 NVIDIA LLM API (Required for real AI)
-
-1. Get a free API key at [https://build.nvidia.com](https://build.nvidia.com)
-2. Add to `.env.local`:
-```env
-NVIDIA_API_KEY=nvapi-xxxxxxxxxxxxxxxxxxxx
-NVIDIA_API_BASE_URL=https://integrate.api.nvidia.com/v1
-```
-
-> **Without NVIDIA API key**: The app works with smart mock AI responses based on keyword matching (veg/non-veg, budget, spice level). Perfect for demos!
-
-### 🔥 Firebase Realtime Database (Required for multi-user)
-
-1. Create a Firebase project at [https://console.firebase.google.com](https://console.firebase.google.com)
-2. Enable **Realtime Database**
-3. Set database rules to:
-```json
-{
-  "rules": {
-    ".read": true,
-    ".write": true
-  }
-}
-```
-4. Add credentials to `.env.local`:
-```env
-NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
-NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
-NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
-NEXT_PUBLIC_FIREBASE_DATABASE_URL=https://your_project-default-rtdb.firebaseio.com
-```
-
-> **Without Firebase**: App still works! Cart and chat are local-only (single user demo mode).
+- **Frontend**: Next.js 14, TypeScript, Tailwind CSS, Framer Motion, Lucide React.
+- **Backend**: Node.js, Express, Socket.io.
+- **Database**: Neon (Serverless Postgres) with Drizzle ORM.
+- **AI**: NVIDIA NIM (Llama-3.1-8b-instruct).
+- **Hosting**: Vercel (Frontend) & Render (Backend).
 
 ---
 
-## 🧠 AI Integration Details
+## 🚀 Getting Started
 
-SquadBot uses NVIDIA's LLM API (`meta/llama-3.1-8b-instruct`) with this prompt structure:
+### Prerequisites
+- Node.js (v18+)
+- A Neon Database URL
+- An NVIDIA API Key
 
-```
-User: "Veg food under ₹300"
-→ AI returns structured JSON:
-{
-  "text": "Found some great veg picks under ₹300! 🎉",
-  "suggestions": [
-    {
-      "restaurant": "Domino's Pizza",
-      "items": ["Margherita Pizza", "Garlic Bread"],
-      "totalEstimate": 288,
-      "isVeg": true
-    }
-  ]
-}
-```
+### Installation
 
-Try asking SquadBot:
-- `"Veg food under ₹200"`
-- `"Something spicy and non-veg"`
-- `"Pizza for 4 people"`
-- `"Budget meal under ₹150"`
-- `"Biryani options"`
-- `"Quick delivery"`
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/harsh2055/squadbite.git
+   cd squadbite
+   ```
 
----
+2. **Install dependencies:**
+   ```bash
+   npm install
+   cd server && npm install
+   cd ..
+   ```
 
-## 📁 Project Structure
+3. **Set up environment variables:**
+   Create a `.env` file in the root and in the `server/` directory with your database and API keys.
 
-```
-squadbite/
-├── app/
-│   ├── page.tsx              # Landing page
-│   ├── layout.tsx            # Root layout
-│   ├── globals.css           # Tailwind + custom styles
-│   ├── room/[roomId]/
-│   │   └── page.tsx          # Main room page
-│   └── api/
-│       ├── suggest/route.ts  # AI suggestion endpoint
-│       └── room/route.ts     # Room creation endpoint
-├── components/
-│   ├── ChatPanel.tsx         # AI chat interface
-│   ├── CartPanel.tsx         # Shared cart UI
-│   ├── BillPanel.tsx         # Bill splitting UI
-│   └── JoinModal.tsx         # Name entry modal
-├── lib/
-│   ├── firebase.ts           # Firebase init
-│   ├── firebaseHelpers.ts    # Realtime DB helpers
-│   ├── aiHelper.ts           # NVIDIA LLM + fallback AI
-│   ├── mockData.ts           # Restaurant/menu mock data
-│   └── store.ts              # Zustand state management
-└── public/
-```
+4. **Run the development server:**
+   ```bash
+   npm run dev:all
+   ```
 
 ---
 
-## 🚢 Deployment (Vercel)
+## 📄 License
 
-```bash
-npm run build
-```
-
-Deploy to Vercel:
-1. Push to GitHub
-2. Import project in [vercel.com](https://vercel.com)
-3. Add all environment variables in Vercel dashboard
-4. Deploy!
+This project is licensed under the MIT License.
 
 ---
 
-## 🎨 Design System
-
-| Token | Value |
-|---|---|
-| Primary Orange | `#FC8019` |
-| Background | `#0c0c0c` |
-| Card | `#161616` |
-| Border | `#252525` |
-| Display Font | Syne |
-| Body Font | Plus Jakarta Sans |
-
----
-
-## 📱 How to Demo (60 seconds)
-
-1. Open http://localhost:3000
-2. Click **"Create a Room"**
-3. Enter your name → **Join Squad Room**
-4. Type: **"Spicy chicken under ₹300"** → See AI suggestions
-5. Click **+** buttons to add items to cart
-6. Switch to **Cart** tab → see real-time updates
-7. Switch to **Bill** tab → see bill split
-8. Open same URL in another tab → join as different user!
-
----
-
-Built with ❤️ for Swiggy Builder Hackathon
+*Built with ❤️ for squads everywhere.*
